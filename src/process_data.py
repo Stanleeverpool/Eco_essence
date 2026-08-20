@@ -1,5 +1,8 @@
 import duckdb
 
+#Pour obtenir les adresses postales/ coordonnées géo
+#https://www.data.gouv.fr/datasets/base-adresse-nationale
+
 #De CSV à parquet
 #duckdb.sql("SELECT * FROM '../data/20230823-communes-departement-region.csv'").write_parquet("../data/code_coordonnees.parquet")
 

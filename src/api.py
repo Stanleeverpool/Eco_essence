@@ -1,20 +1,23 @@
 import requests
-import os
 
-
-class Donnees_gouv :
-    global response
+class Donnees_gouv:
+    BASE_URL = "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/prix-des-carburants-en-france-flux-instantane-v2/records"
 
     def __init__(self):
-        headers = {"Content-Type": "application/json"}
+        self.headers = {"Content-Type": "application/json"}
 
-        URL = "https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/prix-des-carburants-en-france-flux-instantane-v2/records/?lang=fr&limit=10&offset=0"
+    def get(self, lon: float, lat: float, radius_km: float = 15, limit: int = 100):
+        """
+        Récupère les stations dans un rayon donné (en km) autour d'un point GPS.
+        """
+        params = {
+            "where": f"within_distance(geom, geom'POINT({lon} {lat})', {radius_km}km)",
+            "limit": limit,
+            "lang": "fr"
+        }
+        
+        response = requests.get(self.BASE_URL, headers=self.headers, params=params, timeout=10)
+        response.raise_for_status()
+        return response.json()
 
-        response = requests.get(URL, headers=headers).json()
-
-    def get(self):
-        return response
-
-#Pour obtenir les adresses postales/ coordonnées géo
-#https://www.data.gouv.fr/datasets/base-adresse-nationale
    
