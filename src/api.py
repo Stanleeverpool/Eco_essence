@@ -3,6 +3,8 @@ import os
 
 
 class Donnees_gouv :
+    global response
+
     def __init__(self):
         headers = {"Content-Type": "application/json"}
 
@@ -10,4 +12,9 @@ class Donnees_gouv :
 
         response = requests.get(URL, headers=headers).json()
 
+    def get(self):
+        return response
 
+#Pour obtenir les adresses postales/ coordonnées géo
+#https://www.data.gouv.fr/datasets/base-adresse-nationale
+   
