@@ -29,7 +29,6 @@ class Calculations:
         liste_stations = pd.DataFrame(data=liste_stations)
         resultats = duckdb.sql("""
         SELECT 
-            id,
             adresse,
             cp,
             ville,
@@ -39,10 +38,7 @@ class Calculations:
         FROM liste_stations
         WHERE latitude IS NOT NULL AND longitude IS NOT NULL
         ORDER BY e10_prix
-        """).show()
+        """)
 
-        
+        return resultats
 
-if __name__ == "__main__":
-    calc = Calculations(69300)
-    calc.in_radius(5)
