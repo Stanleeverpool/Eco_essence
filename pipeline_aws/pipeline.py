@@ -169,11 +169,12 @@ con.execute("""
     SELECT CAST(range AS DATE) AS date
     FROM range(CURRENT_DATE - INTERVAL 14 DAY, CURRENT_DATE + INTERVAL 1 DAY, INTERVAL 1 DAY);
 
+    -- On force la grille à aller de d_min jusqu'au dernier jour du calendrier pour TOUTES les stations
     CREATE OR REPLACE TABLE grille_complete AS
-    SELECT s.*, c.date
+    SELECT s.id, s.carburant, s.latitude, s.longitude, s.cp, s.pop, s.ville, s.adresse, c.date
     FROM stations s
     CROSS JOIN calendrier_fenetre c
-    WHERE c.date BETWEEN s.d_min AND s.d_max;
+    WHERE c.date >= s.d_min;
 
     CREATE OR REPLACE TABLE grille_ffill AS
     SELECT 
@@ -296,6 +297,7 @@ print("Upload des prédictions et actualisation du buffer sur S3")
 date_str = datetime.date.today().isoformat()
 
 sauvegarder_parquet_s3(df_predictions, "predictions/predictions_du_jour.parquet")
+date_str = str(df_predictions["date"].max())
 sauvegarder_parquet_s3(df_predictions, f"predictions/archive/predictions_{date_str}.parquet")
 
 df_nouveau_buffer = con.execute("""
