@@ -1,6 +1,6 @@
 import duckdb
 
-print("1. Déduplication des relevés bruts...")
+print("Déduplication des relevés")
 duckdb.sql("""
     CREATE OR REPLACE TABLE carburants_unifies AS
     SELECT 
@@ -21,7 +21,7 @@ duckdb.sql("""
     ) = 1;
 """)
 
-print("2. Construction de la série continue du Brent...")
+print("Construction de la série continue du brent")
 duckdb.sql("""
     CREATE OR REPLACE TABLE brent_journalier AS
     WITH calendrier AS (
@@ -50,7 +50,7 @@ duckdb.sql("""
     SELECT * FROM brent_full WHERE date >= '2023-01-01';
 """)
 
-print("3. Intégration des jours fériés et vacances...")
+print(" jours fériés et vacances")
 duckdb.sql("""
     CREATE OR REPLACE TABLE jours_feriers AS
     WITH calendrier AS (
@@ -75,7 +75,7 @@ duckdb.sql("""
     SELECT * FROM jours_full WHERE date BETWEEN '2023-01-01' AND '2025-12-31';
 """)
 
-print("4. Grille spatio-temporelle continue et Feature Engineering SQL...")
+print("Grille spatio-temporelle continue et FE")
 duckdb.sql("""
     CREATE OR REPLACE TABLE dataset_ml_enrichi AS
     WITH stations AS (
@@ -188,7 +188,7 @@ duckdb.sql("""
     SELECT * FROM features_finales;
 """)
 
-print("5. Exportation des fichiers Parquet optimisés...")
+print("Exportation des fichiers parquet")
 duckdb.sql("""
     COPY (
         SELECT * FROM dataset_ml_enrichi 
