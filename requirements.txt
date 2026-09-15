@@ -1,0 +1,10 @@
+boto3
+duckdb
+joblib
+lightgbm
+numpy
+pandas
+pyarrow
+python-dotenv
+requests
+yfinance
