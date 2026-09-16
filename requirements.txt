@@ -9,3 +9,4 @@ python-dotenv
 requests
 scikit-learn
 yfinance
+st_files_connection
