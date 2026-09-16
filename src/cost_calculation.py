@@ -3,7 +3,7 @@ import duckdb
 import api
 
 class Calculations:
-    def __init__(self, code_postal, predi, carburant):
+    def __init__(self, code_postal, predi, carburant, code_po):
         # On attache les variables à l'instance courante avec self
         self.code_p = str(code_postal)
         #self.api_ = api.Donnees_gouv()
@@ -11,10 +11,11 @@ class Calculations:
         self.con = duckdb.connect()
         self.con.execute("INSTALL spatial; LOAD spatial;")
         self.carbu = carburant
+        self.cpo = code_po
 
     def in_radius(self, radius):
         # On trouve les coordonnées à partir du code postal
-        donnees = duckdb.read_parquet("../data/code_coordonnees.parquet")
+        donnees = self.code_p
 
         coordonnees = duckdb.execute("""
             SELECT longitude, latitude
