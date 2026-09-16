@@ -15,7 +15,7 @@ class Calculations:
 
     def in_radius(self, radius):
         # On trouve les coordonnées à partir du code postal
-        donnees = self.code_p
+        donnees = pd.DataFrame(data=self.cpo)
 
         coordonnees = duckdb.execute("""
             SELECT longitude, latitude
