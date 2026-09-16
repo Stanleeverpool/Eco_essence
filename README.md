@@ -20,7 +20,8 @@ sa particularité est de proposer en même temps une **prédiction à J+1** des 
 * **Analyse & Géospatial :** Requêtage **SQL** via **DuckDB** et son extension **Spatial** 
 * **Pipeline automatisé :** Workflow **GitHub Actions** planifié chaque matin à 6h30 (appels aux API, enrichissement, LightGBM et synchronisation vers AWS S3).
 * **Interface utilisateur :** Application web avec **Streamlit** (recherche par code postal/rayon, filtres carburants et itinéraires Google Maps).
-
+* **Code :** **Python** avec notamment **DuckDB**, **Pandas**, **Numpy**, **scikit-learn**, **joblib**, **yfinance** et autres pour les connexions AWS et requêtes\
+  aux API
 
 ## 🧠 Modélisation et Machine Learning
 
