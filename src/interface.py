@@ -10,7 +10,7 @@ conn = st.connection('s3', type=FilesConnection)
 df = conn.read("s3://eco-essence-bordji/predictions/predictions_du_jour.parquet", input_format="parquet", ttl=600)
 cpo = conn.read("s3://eco-essence-bordji/reference/code_coordonnees.parquet", input_format="parquet", ttl=600)
 
-st.title("Eco Essence")
+st.title("Eco Essence - Yannis BORDJI")
 st.divider()
 code_postal = st.text_input("Votre code postal", "69300")
 
