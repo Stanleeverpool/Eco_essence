@@ -38,8 +38,6 @@ class Calculations:
         SELECT 
             'https://www.google.com/maps/search/?api=1&query=' || 
         url_encode(concat_ws(' ', adresse, ville)) AS maps,
-            carburant,
-            date,
             prix_actuel,
             prix_predit_demain AS Prix_predit_demain,
             tendance,

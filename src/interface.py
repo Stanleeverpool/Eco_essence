@@ -3,7 +3,7 @@ import cost_calculation as cc
 import re
 from st_files_connection import FilesConnection
 
-st.set_page_config(layout="wide")
+#st.set_page_config(layout="wide")
 
 conn = st.connection('s3', type=FilesConnection)
 
@@ -33,7 +33,8 @@ if(bool(re.fullmatch(pattern, code_postal))):
         "maps": st.column_config.LinkColumn(
             "Itinéraire",
             display_text="Ouvrir dans Maps",
-            pinned=True
+            pinned=True,
+            disabled = True
         )
     },
     hide_index=True

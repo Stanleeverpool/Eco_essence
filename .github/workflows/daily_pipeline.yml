@@ -3,7 +3,7 @@ name: Pipeline quotidienne
 on:
   schedule:
     # 04h30 UTC correspond à 06h30 UTC+2
-    - cron: '30 4 * * *'
+    - cron: '17 5 * * *'
   workflow_dispatch: # Permet de déclencher le script manuellement 
 
 jobs:
